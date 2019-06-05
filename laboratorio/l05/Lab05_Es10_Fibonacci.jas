@@ -1,0 +1,40 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+a	5
+.end-constant
+
+.main
+.var
+i
+.end-var
+	LDC_W objref  
+ 	LDC_W a
+ 	INVOKEVIRTUAL fib
+ 	ISTORE i
+ 	HALT
+.end-main
+
+.method fib(n)
+.var
+.end-var
+	ILOAD n
+	BIPUSH 1
+	IF_ICMPEQ end
+	ILOAD n
+	BIPUSH 2
+	IF_ICMPEQ end
+	LDC_W objref
+	ILOAD n
+	BIPUSH 1
+	ISUB
+	INVOKEVIRTUAL fib
+	LDC_W objref
+	ILOAD n
+	BIPUSH 2
+	ISUB
+	INVOKEVIRTUAL fib
+	IADD
+	IRETURN
+end: 	BIPUSH 1
+     	IRETURN
+.end-method

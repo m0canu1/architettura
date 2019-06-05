@@ -1,0 +1,109 @@
+//    
+//	Calcolo MCD e mcm con l'algoritmo di Euclide di due numeri interi positivi
+//    	Definizione metodi: 
+//	1) MCD(a,b)
+//	2) MULT(a,b)
+//	3) DIV(a,b)  divisione intera a/b
+//	Il mcm(a,b) e' calcolato nel main usando la seguente formula: a*b / MCD(a,b)
+//
+//  
+.constant
+OBJREF 0x40			// parametro 0 da passare ai metodi
+.end-constant
+
+
+.main				// inizio main
+
+.var				// variabili locali per il main
+a 
+b 
+num
+denom
+result
+.end-var
+
+start:	BIPUSH 0x28		// inizializzazione variabile a = (40)_10 
+	ISTORE a
+	BIPUSH 0x0F		// inizializzazione variabile b = (15)_10
+	ISTORE b
+	LDC_W OBJREF		// preparazione per chiamata metodo
+	ILOAD a			// primo parametro
+	ILOAD b			// secondo parametro
+	INVOKEVIRTUAL MULT	// moltiplico a*b
+	ISTORE num		// salvo il risultato in num
+	LDC_W OBJREF		// preparazione per chiamata metodo
+	ILOAD a			// primo parametro
+	ILOAD b			// secondo parametro
+	INVOKEVIRTUAL MCD	// calcolo il MCD(a,b)
+	ISTORE denom		// salvo il risultato in denom
+	LDC_W OBJREF		// preparazione per chiamata metodo
+	ILOAD num		// primo parametro
+	ILOAD denom		// secondo parametro
+	INVOKEVIRTUAL DIV	// divido num/denom
+	ISTORE result		// salvo il mcm   in result
+	HALT			// end of simulation
+.end-main
+
+.method MCD( a, b )	// metodo che calcola MCD(a,b)
+
+
+
+ripeti:	ILOAD b			// while (a<>b) 
+	ILOAD a
+	IF_ICMPEQ fine		 
+	ILOAD b			// b-a   
+	ILOAD a			
+	ISUB			
+	IFLT  caso1		// if(b - a < 0): caso1
+	GOTO caso2		// else: caso2
+caso1:	ILOAD a			// a = a - b
+	ILOAD b
+	ISUB
+	ISTORE a
+	GOTO ripeti		// ripeti il test del while
+caso2:	ILOAD b			// b = b - a
+	ILOAD a
+	ISUB
+	ISTORE b
+	GOTO ripeti		// ripeti il test del while
+fine:	ILOAD a			// metti il valore di ritorno in cima allo stack
+	IRETURN			// ritorna al chiamante
+
+.end-method
+
+
+.method MULT(a,b)	// metodo che calcola a*b
+
+
+	ILOAD a		// carica a
+ripeti:	IINC b -1	// b=b-1
+	ILOAD b		// if(b==0) finito
+	IFEQ  finito		
+	ILOAD a		// else:  a=a+a	
+	IADD
+	GOTO ripeti	// vai a ripeti			
+finito:	IRETURN		//  ritorna al chiamante (il valore calcolato e' in cima allo stack)
+
+.end-method
+
+.method DIV( a, b )	// metodo che calcola a/b (divisione intera), a e b interi e non nulli, a >= b  
+.var
+counter			// variabile locale al metodo: contatore
+.end-var
+
+	BIPUSH 0x00	// counter = 0 
+	ISTORE counter
+ripeti:	ILOAD a		// while(a>=b)
+	ILOAD b
+	ISUB
+	IFLT fine	 
+	ILOAD a		// a = a-b 
+	ILOAD b
+	ISUB
+	ISTORE a
+	IINC counter 0x01 // counter= counter + 1
+	GOTO ripeti	// ripeti il test del while
+fine:	ILOAD counter	// carica counter sulla cima dello stack
+	IRETURN		//  ritorna al chiamante
+
+.end-method

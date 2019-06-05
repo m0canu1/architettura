@@ -1,0 +1,36 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+.main
+.var
+i
+j
+k
+.end-var
+ 	bipush 15
+ 	istore i
+	iload i
+	bipush 10
+	iadd
+	istore j
+	ldc_w objref   
+	iload i
+	iload j
+	invokevirtual somma
+	istore k
+	halt
+.end-main
+.method somma(x,y)
+.var
+z
+.end-var
+	iload x
+	iload y
+	iadd
+	istore z
+	iload z
+	ireturn
+.end-method
+ 
+
+  
