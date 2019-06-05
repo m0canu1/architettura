@@ -1,0 +1,24 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+YOUR CONSTANTS
+.end-constant
+
+.main
+.var
+YOUR VARIABLES
+.end-var
+
+Code
+0: 
+    metti sullo stack il parametro attuale
+    invoke_virtual foo...
+
+.end-main
+
+.method foo(y) // da lasciare per problemi di visualizzazione
+.var
+x
+.end-var
+usa y e x e lascia il risultato 
+sullo stack
+.end-method
