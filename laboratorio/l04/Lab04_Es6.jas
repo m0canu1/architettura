@@ -1,0 +1,36 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+.var
+x
+y
+.end-var
+
+0:	BIPUSH -7  // inizializzazione variabili 
+   	ISTORE x
+   	BIPUSH  5
+   	ISTORE y
+	ILOAD x
+	BIPUSH -2
+	IADD
+	ILOAD y
+	IADD 
+	ISTORE x
+ifxminorey: ILOAD x
+	ILOAD y
+	ISUB
+	IFLT then
+	goto end
+then:	ILOAD x 
+	ILOAD y
+	IADD
+	ISTORE x 
+end: 	halt
+.end-main
+.method foo()
+.var
+x
+.end-var
+.end-method

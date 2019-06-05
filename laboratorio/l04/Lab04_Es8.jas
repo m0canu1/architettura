@@ -1,0 +1,32 @@
+.constant
+a 0xff
+b 0xee
+.end-constant
+
+.main
+.var
+x      // valore di cui fare il quadrato, necessario che sia positivo
+i
+tot	 // variabile accumulatore, alla  fine contiene il valore del quadrato di x, che viene caricato sullo stack
+.end-var
+	bipush 3
+	istore x
+	bipush 0
+	istore i
+	bipush 0
+	istore tot
+loop:	iload i		# while (i != x)
+	iload x
+ 	if_icmpeq end
+	iload x		# tot = tot + x;
+ 	iload tot
+ 	iadd
+ 	istore tot
+ 	iinc i 1	# i++;
+	goto loop
+end:	iload tot	#lascia  tot sullo stack;
+	halt
+.end-main
+ 
+
+  
