@@ -1,0 +1,17 @@
+.constant
+a 0xff
+b 0xee
+.end-constant
+
+.main
+.var
+x
+y
+.end-var
+	bipush 16
+	istore x
+	bipush 57
+	tns x
+	bipush 5
+	halt
+.end-main

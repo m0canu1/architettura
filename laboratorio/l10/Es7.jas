@@ -1,0 +1,18 @@
+.constant
+a 0xff
+b 0xee
+.end-constant
+
+.main
+.var
+x
+y
+z
+.end-var
+	bipush 16
+	bipush 5
+	bipush 8
+	istore y
+	idivvar y
+	halt
+.end-main
