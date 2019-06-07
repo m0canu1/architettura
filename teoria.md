@@ -30,3 +30,27 @@ c) quali sono i principali vantaggi di questa rappresentazione dei numeri relati
 - il vantaggio principale di questa rappresentazione è che si ha una sola rappresentazione dello 0
 
 ######JMPC è impostato ad 1 quando si vuole abilitare l'input dell'indirizzo da MBR, quindi solo nel caso dell'istruzione Main1.
+
+
+#####Modifiche all'emulatore:
+1) aggiungere una nuova macro-istruzione nel file di configurazione ijvm.conf
+2) aggiungere in mic1ijvm.mal le micro-istruzioni relative all nuova macro-istruzione
+3) Definire l'indirizzo nella control store relativo alla prima micro-istruzione
+4)  
+
+
+####Cache
+Il contenuto della cache e ciò che è in memoria (RAM) è identico.
+La RAM ha molte più pagine (4096) di memoria rispetto alla Cache (128 *frame*).
+Ogni pagina della RAM sta in un frame della Cache.
+######Direct mapping
+La memoria principale viene divisa in blocchi da 128 pagine, quindi 32 blocchi.
+Ogni blocco ha un *tag* numerato da 0 a 31. 
+La Cache usa il numero del tag per identificare il blocco e l'indice dei **suoi** *frame* indicano quale *pagina* verrà caricata:
+**TAG** 3, **INDICE** 2: la *pagina* caricata nel *frame* è la pagina 2 del blocco 3 -> *pagina* 386
+**Non ci sono algoritmi di *Sostituzione delle pagine***
+
+######Associative mapping - Fully Associative Mapping
+
+
+######Set-associative mapping
