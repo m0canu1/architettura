@@ -35,8 +35,12 @@ c) quali sono i principali vantaggi di questa rappresentazione dei numeri relati
 #####Modifiche all'emulatore:
 1) aggiungere una nuova macro-istruzione nel file di configurazione ijvm.conf
 2) aggiungere in mic1ijvm.mal le micro-istruzioni relative all nuova macro-istruzione
-3) Definire l'indirizzo nella control store relativo alla prima micro-istruzione
-4)  
+3) Definire l'indirizzo nella control store relativo alla prima micro-istruzione. L'indirizzo dev'essere uguale all'OPCODE della nuova *macro-istruzione*.
+
+
+#####Modi per riconoscere overflow in Complemento A 2:
+1) Somma tra addendi dello stesso segno dà un risultato con segno diverso (es: ++=- o --=+)
+2) Il riporto della colonna *n-1* alla colonna *n* ed il riporto dalla colonna *n* a quella oltra la cifra più significativa sono discordi.
 
 
 ####Cache
