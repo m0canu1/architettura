@@ -1,0 +1,186 @@
+
+.constant
+    objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+.main
+.var
+    value
+.end-var
+    LDC_W objref
+    BIPUSH 10
+    BIPUSH 4
+    INVOKEVIRTUAL mult4
+    ISTORE value
+    halt
+.end-main
+
+.method mult4(x,y)
+.var
+
+.end-var
+
+    ILOAD x
+    ILOAD y
+
+    IFEQ goto L1
+    IRETURN
+
+L1: ILOAD x
+    IADD
+    ILOAD x
+    IADD
+    ILOAD x
+    IADD
+    IRETURN
+
+.end-method
+
+
+
+Esercizio 4
+
+.constant
+.end-constant
+.main
+.var
+    x
+    y
+    z
+.end-var
+
+    ILOAD x
+    IFEQ L1
+    ILOAD z
+    ISTORE x
+L1: ILOAD y
+    ISTORE x
+    goto L2
+L2: ILOAD x
+    BIPUSH 1
+    IADD
+    ISTORE y
+halt
+
+.end-main
+
+
+
+Esercizio 7
+
+.constant
+.end-constant
+.main
+.var
+    x
+    y
+.end-var
+
+L0: ILOAD x
+    IFLT L1
+    goto End
+L1: ILOAD x
+    ILOAD y
+    IADD
+    ISTORE x
+    goto L0
+End:halt
+.end-main
+
+
+Esercizio 8
+
+.constant
+    objref 0xCAFE
+.end-constant
+.main
+.var
+    x
+.end-var
+    LDC_W objref
+    ILOAD x
+    INVOKEVIRTUAL square
+    ISTORE x
+halt
+.end-main
+
+.method square(x)
+.var
+.end-var
+    ILOAD x
+    DUP
+    IADD
+    IRETURN
+.end-method
+
+
+.constant
+    objref 0xCAFE
+.end-constant
+.main
+.var
+
+    i
+    j
+    k
+
+.end-var
+
+    LDC_W objref
+    BIPUSH 15
+    ISTORE i 
+    ILOAD i 
+    BIPUSH 10
+    IADD
+    ISTORE j
+    ILOAD i
+    ILOAD j
+    INVOKEVIRTUAL somma
+    ISTORE k
+    halt
+.end-main
+
+.method somma(x, y)
+.var
+    z
+.end-var
+
+    ILOAD x
+    ILOAD y
+    IADD
+    ISTORE z
+    ILOAD z
+    IRETURN
+
+.end-method
+
+
+Esercizio 9 15/06/2017
+.constant
+    objref 0xCAFE
+.end-constant
+.main
+.var
+    result
+.end-var
+    LDC_W objref
+    BIPUSH 13
+    BIPUSH 5
+    INVOKEVIRTUAL restoint
+    ISTORE result
+    halt
+.end-main
+
+.method restoint (x, y)
+.var
+.end-var
+L0: ILOAD x
+    ILOAD y
+    ISUB
+    IFLT End
+    ILOAD x
+    ILOAD y
+    ISUB
+    ISTORE x
+    goto L0
+End:IRETURN    
+.end-method
