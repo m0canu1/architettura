@@ -73,111 +73,11 @@ Main1	PC = PC + 1; fetch; goto (MBR)	// MBR holds opcode; get next byte; dispatc
 // tra la stessa e il valore intero con segno rappresentato
 // in byte.
 
-cazzo1 MAR = SP;rd
-cazzo2 MAR = LV;rd
-cazzo3	H = MDR;wr
-cazzo4 MAR = SP;wr
-cazzo5 TOS = MDR; goto Main1
-
-idouble1	H = TOS;
-idouble2	SP = MAR = SP+1;
-idouble3	H = H + MDR;
-idouble4	TOS = MDR = H;wr; goto Main1	
-
-pow1		OPC = H = TOS
-pow2		OPC = OPC - 1
-pow3		H = TOS + H
-pow4		OPC = OPC - 1
-pow5		Z = OPC; if (Z) goto pow6;else goto pow3;
-pow6		TOS = MDR = H;wr;goto Main1
-
-
-swaploc1	MAR = LV;rd
-swaploc2	MAR = LV +1;rd
-swaploc3	OPC = MDR;	
-swaploc4	H = MDR;
-swaploc5	MAR = LV;
-swaploc6	MDR = H;wr
-swaploc7	MAR = LV +1;
-swaploc8	MDR = OPC;wr;goto Main1
-
-constor1	MAR = OPC = CPP +1;rd
-constor2	MAR = OPC +1;rd
-constor3	H = MDR;
-constor4	OPC = H OR MDR;
-constor5	SP = MAR = SP +1;
-constor6	TOS = MDR = OPC;wr; goto Main1
-
-dupaquarter1	H = TOS
-dupaquarter2	H = H >> 1
-dupaquarter3	H = H >> 1
-dupaquarter4	TOS = MDR = H;wr;goto Main1
-
-sumlv1	H = LV
-sumlv2	MAR = H + MBRU;rd
-sumlv3	PC = PC +1;fetch
-sumlv4	H = TOS
-sumlv5	TOS = MDR = MDR + H;wr;goto Main1 
-
-read1	MAR = SP;rd
-read2	SP = MAR = SP -1;rd
-read3	H = MDR
-read4	TOS = MDR
-
-locand1		MAR = OPC = LV +1;rd
-locand2		
-locand3		H = MDR
-locand4		MAR = OPC + 1;rd
-locand5		SP = MAR = SP +1
-locand6		OPC = H AND MDR;
-locand7		MDR = OPC;wr;goto Main1
-
-locand21	H = MAR = LV +1;rd
-locand22	MAR = H +1;rd
-locand23	H = MDR
-locand24	OPC = MDR
-locand25	SP = MAR = SP+1
-locand26	MDR = TOS = OPC AND H;wr; goto Main1
-	
-comp21		H = TOS
-comp22		H = - H
-comp23		H = H + 1
-comp24		TOS = MDR = H;wr;goto Main1
-
-tri1	SP = MAR = SP+1
-tri2	MDR = TOS;wr
-tri3	SP = MAR = SP + 1
-tri4	MDR = TOS;wr;goto Main1
-
-divvar1		H = LV
-divvar2		MAR = H + MBR;rd
-divvar3		
-divvar5		H = MDR >> 1
-divvar6		MDR = H;wr; goto Main1		
-
-multhree1	H = TOS
-multhree2	H = H + TOS
-multhree3	H = H + TOS
-multhree4	MDR = TOS = H;wr	
-
-push_negative1	SP = MAR = SP+1;
-push_negative2	TOS = MDR = -1;wr;goto Main1
-
-
-loaddec1	H = LV
-loaddec2	MAR = MBRU + H;rd
-loaddec3	SP = MAR = SP+1
-loaddec4	TOS = MDR = MDR-1;wr;goto Main1	
-
-const_01	SP = MAR = SP+1
-const_02	MDR = 0;wr;goto Main1	
-
-
-idec1	H = LV;
-idec2	MAR = H + MBRU;rd
-idec3	H = TOS;
-idec4	MDR = MDR - H;wr; goto Main1
-
+cazzo1 MAR = LV;rd
+cazzo2 MAR = SP;rd
+cazzo3 TOS = MDR;wr 
+cazzo4 MAR = LV;wr; goto Main1
+//cazzo5 MDR = H;wr; goto Main1
 
 nop1	goto Main1			// Do nothing
 

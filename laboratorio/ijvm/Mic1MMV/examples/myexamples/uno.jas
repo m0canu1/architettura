@@ -1,0 +1,11 @@
+.constant
+.end-constant
+.main
+.var
+x
+.end-var
+    BIPUSH 8
+    ISTORE x
+    BIPUSH 5
+    CAZZO
+.end-main
