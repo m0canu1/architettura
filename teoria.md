@@ -56,10 +56,13 @@ c) quali sono i principali vantaggi di questa rappresentazione dei numeri relati
 
 
 #### Cache
+
 Il contenuto della cache e ciò che è in memoria (RAM) è identico.
 La RAM ha molte più pagine (4096) di memoria rispetto alla Cache (128 *frame*).
 Ogni pagina della RAM sta in un frame della Cache.
+
 ###### Direct mapping
+
 La memoria principale viene divisa in blocchi da 128 pagine, quindi 32 blocchi.
 Ogni blocco ha un *tag* numerato da 0 a 31. 
 La Cache usa il numero del tag per identificare il blocco e l'indice dei **suoi** *frame* indicano quale *pagina* verrà caricata:
@@ -68,5 +71,13 @@ La Cache usa il numero del tag per identificare il blocco e l'indice dei **suoi*
 
 ###### Associative mapping - Fully Associative Mapping
 
-
 ###### Set-associative mapping
+
+###### INVOKEVIRTUAL
+
+L’istruzione *INVOKEVIRTUAL* predisponde l'ambiente per il passaggio al sottoprogramma:
+- Crea l’area di attivazione del chiamato sul top dello stack
+- Inserisce in quest’area le informazioni necessarie per il     ritorno
+- Aggiorna i registri
+- Lancia l ‘esecuzione del sottoprogramma
+
