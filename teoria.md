@@ -1,14 +1,28 @@
 #### Assembler
-> *ILC* = L'**Instruction Location Counter** è una variabile che viene usata per tenere traccia (in fase di esecuzione) dell'indirizzo di una istruzione. Questo indirizzo viene usando durante l'assegnamento di un valore ad un simbolo nel campo *etichetta* della *istruzione*.
+> *ILC* = L'**Instruction Location Counter** è una variabile che viene usata per tenere traccia (in fase di esecuzione) dell'indirizzo di una istruzione. 
+> Questo indirizzo viene usando durante l'assegnamento di un valore ad un simbolo nel campo *etichetta* della *istruzione*.
 
 #### Passi assemblatore:
-1) ds
-2) fdd
+1) L'assemblatore costruisce due tabelle:
+   1) **Tabella delle costanti** che contiene le **costanti globali** e i **nomi simbolici** dei sottoprogrammi
+   2) **Tabella dei Simboli** che contiene i **valori dei simboli**
+   Per determinare la lunghezza di una istruzione usa la **Tabella degli Opcode**
+2) Generazione di un **codice oggetto** del programma sorgente, che consiste di:
+   - sostituzione dei riferimenti simbolici **risolti**
+   - si marcano le istruzioni che contengono riferimento simbolici **non risolti**
+   - le istruzioni vengono tradotte in *codice oggetto*
+   - rilevata presenza di eventuali errori
+   - vengono emesse le informazioni necessarie al **Linker** per collegare i moduli
+    >Tutto il *secondo passo* viene fatto tramite la **Tabella dei simboli**
+
+#### Linker
+A questo punto, dopo i due passi dell'assemblatore, i due moduli oggetto generati devono essere fusi insieme. Il **LINKER** fa questo mediante una tabella.
 
 #### Per avere un programma correttamente eseguibile i passi che un codice sorgente attraversa sono:
 1) Compilatore 
 2) Assemblatore
 3) Linker
+4) Loader
 
 ---
 
