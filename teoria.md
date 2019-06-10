@@ -73,7 +73,6 @@ Ogni pagina della RAM sta in un frame della Cache.
     La memoria principale viene divisa in blocchi da 128 pagine, quindi 32 blocchi.
 Ogni blocco ha un campo, (che chiamiamo) **tag**, numerato da 0 a 31. 
 La Cache usa il numero del tag per identificare il blocco e l'indice dei **suoi** *frame* indica quale *pagina* verrà caricata:
-=======
 
 ###### Direct mapping
 
@@ -83,10 +82,10 @@ La Cache usa il numero del tag per identificare il blocco e l'indice dei **suoi*
 **TAG** 3, **INDICE** 2: la *pagina* caricata nel *frame* è la pagina 2 del blocco 3 -> *pagina* 386
 In questo tipo di mapping **non ci sono algoritmi di *Sostituzione delle pagine***.
 
-- ###### Associative mapping - Fully Associative Mapping
+- **Associative mapping - Fully Associative Mapping**
 
 
-- ###### Set-associative mapping
+- **Set-associative mapping**
 
 ---
 ### BUS
@@ -97,15 +96,17 @@ L'insieme delle regole viene definito come il ***protocollo del BUS***
 
 Le **linee del BUS** possono essere:
 
-- Linee di **DATI**: la sua larghezza determina il numero di bit che possono essere trasmessi insieme
+- Linee di **DATI**: la sua larghezza determina il numero di bit che possono essere trasmessi insieme. 
+  - Es: con *n* bit possono indirizzare 2^n indirizzi
 - Linee di **INDIRIZZO**: permettono di inviduare la **sorgente/destinazione** dei dati
 - Linee di **CONTROLLO**: **controllano l'accesso** delle linee di dati e di indirizzo.
 
 I **BUS** possono essere:
-- **SINCRONI**: essi hanno un clock principale pilotato da un oscillatore. **Tutte** le attività richiedono un numero **intero** di questi cicli.
-- **ASINCRONI**: essi non
-- 
-###### Set-associative mapping
+- **SINCRONI**: essi **hanno** un **clock principale*** pilotato da un oscillatore. **Tutte** le attività richiedono un numero **intero** di questi cicli.
+- **ASINCRONI**: essi **NON** hanno un clock principale. I cicli hanno lunghezza variabile in base alle necessità e **non devono** essere uguali per tutti i dispositivi.
+  - I dispositivi collegati possono essere:
+    - **MASTER**
+    - **SLAVE**
 
 #### INVOKEVIRTUAL
 
