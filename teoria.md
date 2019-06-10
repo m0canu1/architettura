@@ -1,5 +1,5 @@
-#### Assembler:
-*ILC* = L'**Instruction Location Counter** è una variabile che viene usata per tenere traccia (in fase di esecuzione) dell'indirizzo di una istruzione. Questo indirizzo viene usando durante l'assegnamento di un valore ad un simbolo nel campo *etichetta* della *istruzione*.
+#### Assembler
+> *ILC* = L'**Instruction Location Counter** è una variabile che viene usata per tenere traccia (in fase di esecuzione) dell'indirizzo di una istruzione. Questo indirizzo viene usando durante l'assegnamento di un valore ad un simbolo nel campo *etichetta* della *istruzione*.
 
 #### Passi assemblatore:
 1) ds
@@ -9,6 +9,8 @@
 1) Compilatore 
 2) Assemblatore
 3) Linker
+
+---
 
 #### Con riferimento all'interprete micro-programmato Mic-1, qualli delle seguenti affermazioni sono vere?
 [**F**] A. Durante l'esecuzione della micro-istruzione Main1 viene sempre richiesto il fetch dell'argomento dell'istruzione in esecuzione.
@@ -23,7 +25,8 @@
 [**V**] d) l'offset di 2 byte presente nell'istruzione IJVM *"GOTO offset"* viene prelevato direttamente dal registro MBR2
 [**F**] e)  utilizza la tecnica del pipelining
 
-#### Nell'ambito dell'architettura MIC-1 si descriva la relazione fra gli indirizzi nel *control store* delle due micro-istruzioni raggiungibili come destinazioni alternative di una istruzione di tipo jump (JAMZ e/o JAMZ uguali ad 1)
+#### Nell'ambito dell'architettura MIC-1 si descriva la relazione fra gli indirizzi nel *control store* delle due micro-istruzioni raggiungibili come destinazioni alternative di una istruzione di tipo jump (JAMZ e/o JAMZ uguali ad 1):
+
 
 
 #### Quali delle seguenti affermazioni sono vere?
@@ -43,30 +46,52 @@ c) quali sono i principali vantaggi di questa rappresentazione dei numeri relati
 
 ###### JMPC è impostato ad 1 quando si vuole abilitare l'input dell'indirizzo da MBR, quindi solo nel caso dell'istruzione Main1.
 
+---
 
 ##### Modifiche all'emulatore:
-1) aggiungere una nuova macro-istruzione nel file di configurazione ijvm.conf
-2) aggiungere in mic1ijvm.mal le micro-istruzioni relative all nuova macro-istruzione
-3) Definire l'indirizzo nella control store relativo alla prima micro-istruzione. L'indirizzo dev'essere uguale all'OPCODE della nuova *macro-istruzione*.
+>1) aggiungere una nuova macro-istruzione nel file di configurazione ijvm.conf
+>2) aggiungere in mic1ijvm.mal le micro-istruzioni relative all nuova macro-istruzione
+>3) Definire l'indirizzo nella control store relativo alla prima micro-istruzione. L'indirizzo dev'essere uguale all'OPCODE della nuova *macro-istruzione*.
 
 
 ##### Modi per riconoscere overflow in Complemento A 2:
-1) Somma tra addendi dello stesso segno dà un risultato con segno diverso (es: ++=- o --=+)
-2) Il riporto della colonna *n-1* alla colonna *n* ed il riporto dalla colonna *n* a quella oltra la cifra più significativa sono discordi.
+>1) Somma tra addendi dello stesso segno dà un risultato con segno diverso (es: ++=- o --=+)
+>2) Il riporto della colonna *n-1* alla colonna *n* ed il riporto dalla colonna *n* a quella oltra la cifra più significativa sono discordi.
 
+---
 
 #### Cache
 Il contenuto della cache e ciò che è in memoria (RAM) è identico.
 La RAM ha molte più pagine (4096) di memoria rispetto alla Cache (128 *frame*).
 Ogni pagina della RAM sta in un frame della Cache.
-###### Direct mapping
-La memoria principale viene divisa in blocchi da 128 pagine, quindi 32 blocchi.
-Ogni blocco ha un *tag* numerato da 0 a 31. 
-La Cache usa il numero del tag per identificare il blocco e l'indice dei **suoi** *frame* indicano quale *pagina* verrà caricata:
+> **Principio di località:**
+> - **Spaziale**: con questo principio si assume che, durante l'esecuzione di un'istruzione di un programma da parte della CPU, le istruzioni seguenti si trovino in un'area contigua nella memoria principale. In questo modo la **cache** può memorizzare quell'area riducendo i tempi di esecuzione totale del programma.
+> - **Temporale**: con questo principio si tiene in considerazione la frequenza con cui le parti di codice vengono eseguite e si assume che ci siano parti che vengono eseguite più spesso di altre. Dunque mantenendo una copia in memoria cache dei dati più richiesti durante l'esecuzione del programma, si sfrutta tale principio.
+- ###### Direct mapping:
+    La memoria principale viene divisa in blocchi da 128 pagine, quindi 32 blocchi.
+Ogni blocco ha un campo, (che chiamiamo) **tag**, numerato da 0 a 31. 
+La Cache usa il numero del tag per identificare il blocco e l'indice dei **suoi** *frame* indica quale *pagina* verrà caricata:
 **TAG** 3, **INDICE** 2: la *pagina* caricata nel *frame* è la pagina 2 del blocco 3 -> *pagina* 386
-**Non ci sono algoritmi di *Sostituzione delle pagine***
+In questo tipo di mapping **non ci sono algoritmi di *Sostituzione delle pagine***.
 
-###### Associative mapping - Fully Associative Mapping
+- ###### Associative mapping - Fully Associative Mapping
 
 
-###### Set-associative mapping
+- ###### Set-associative mapping
+
+---
+### BUS
+
+>Il **BUS** è un insieme di linee elettriche che collegano i moduli di un elaboratore.
+Affinché i *moduli* collegati siano in grado di comunicare è necessario che essi interagiscano con il *BUS* tramite regole ben precise.
+L'insieme delle regole viene definito come il ***protocollo del BUS***
+
+Le **linee del BUS** possono essere:
+
+- Linee di **DATI**: la sua larghezza determina il numero di bit che possono essere trasmessi insieme
+- Linee di **INDIRIZZO**: permettono di inviduare la **sorgente/destinazione** dei dati
+- Linee di **CONTROLLO**: **controllano l'accesso** delle linee di dati e di indirizzo.
+
+I **BUS** possono essere:
+- **SINCRONI**: essi hanno un clock principale pilotato da un oscillatore. **Tutte** le attività richiedono un numero **intero** di questi cicli.
+- **ASINCRONI**: essi non
