@@ -61,9 +61,11 @@ c) quali sono i principali vantaggi di questa rappresentazione dei numeri relati
 ---
 
 #### Cache
+
 Il contenuto della cache e ciò che è in memoria (RAM) è identico.
 La RAM ha molte più pagine (4096) di memoria rispetto alla Cache (128 *frame*).
 Ogni pagina della RAM sta in un frame della Cache.
+
 > **Principio di località:**
 > - **Spaziale**: con questo principio si assume che, durante l'esecuzione di un'istruzione di un programma da parte della CPU, le istruzioni seguenti si trovino in un'area contigua nella memoria principale. In questo modo la **cache** può memorizzare quell'area riducendo i tempi di esecuzione totale del programma.
 > - **Temporale**: con questo principio si tiene in considerazione la frequenza con cui le parti di codice vengono eseguite e si assume che ci siano parti che vengono eseguite più spesso di altre. Dunque mantenendo una copia in memoria cache dei dati più richiesti durante l'esecuzione del programma, si sfrutta tale principio.
@@ -71,6 +73,13 @@ Ogni pagina della RAM sta in un frame della Cache.
     La memoria principale viene divisa in blocchi da 128 pagine, quindi 32 blocchi.
 Ogni blocco ha un campo, (che chiamiamo) **tag**, numerato da 0 a 31. 
 La Cache usa il numero del tag per identificare il blocco e l'indice dei **suoi** *frame* indica quale *pagina* verrà caricata:
+=======
+
+###### Direct mapping
+
+La memoria principale viene divisa in blocchi da 128 pagine, quindi 32 blocchi.
+Ogni blocco ha un *tag* numerato da 0 a 31. 
+La Cache usa il numero del tag per identificare il blocco e l'indice dei **suoi** *frame* indicano quale *pagina* verrà caricata:
 **TAG** 3, **INDICE** 2: la *pagina* caricata nel *frame* è la pagina 2 del blocco 3 -> *pagina* 386
 In questo tipo di mapping **non ci sono algoritmi di *Sostituzione delle pagine***.
 
@@ -95,3 +104,13 @@ Le **linee del BUS** possono essere:
 I **BUS** possono essere:
 - **SINCRONI**: essi hanno un clock principale pilotato da un oscillatore. **Tutte** le attività richiedono un numero **intero** di questi cicli.
 - **ASINCRONI**: essi non
+- 
+###### Set-associative mapping
+
+#### INVOKEVIRTUAL
+
+L’istruzione **INVOKEVIRTUAL** predisponde l'ambiente per il passaggio al sottoprogramma:
+- Crea l’area di attivazione del chiamato sul top dello stack
+- Inserisce in quest’area le informazioni necessarie per il     ritorno
+- Aggiorna i registri
+- Lancia l ‘esecuzione del sottoprogramma
