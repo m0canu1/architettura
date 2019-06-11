@@ -1,11 +1,25 @@
 .constant
+objref 0xCAFE
 .end-constant
 .main
 .var
-x
 .end-var
+    LDC_W objref
     BIPUSH 8
-    ISTORE x
-    BIPUSH 5
-    CAZZO
+    BIPUSH 3
+    INVOKEVIRTUAL MULT2
+    HALT
 .end-main
+
+.method MULT2(x,y)
+.var
+.end-var
+    ILOAD x
+    ILOAD y
+    ISUB
+    IFEQ L1
+    BIPUSH x
+    IRETURN
+L1: ILOAD x
+    IRETURN
+.end-method

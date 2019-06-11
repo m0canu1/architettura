@@ -61,7 +61,7 @@
 .label	locand21	0x30
 .label	sumlv1		0x31
 .label 	swaploc1	0x32
-.label 	cazzo1		0x92
+.label 	swaploc1s1		0x92
 
 
 // default instruction to place in any unused addresses of the control store
@@ -73,11 +73,11 @@ Main1	PC = PC + 1; fetch; goto (MBR)	// MBR holds opcode; get next byte; dispatc
 // tra la stessa e il valore intero con segno rappresentato
 // in byte.
 
-cazzo1 MAR = LV;rd
-cazzo2 MAR = SP;rd
-cazzo3 TOS = MDR;wr 
-cazzo4 MAR = LV;wr; goto Main1
-//cazzo5 MDR = H;wr; goto Main1
+swaploc1s1 MAR = LV;rd
+swaploc1s2 MDR = TOS;wr
+swaploc1s3 TOS = MDR
+swaploc1s4 MAR = SP; wr; goto Main1
+
 
 nop1	goto Main1			// Do nothing
 
