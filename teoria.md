@@ -101,9 +101,10 @@ In questo tipo di mapping **non ci sono algoritmi di *Sostituzione delle pagine*
 
 - **Set-associative mapping**
 
----
+----
+
 ### BUS
-**BUS** è un insieme di linee elettriche che collegano i moduli di un elaboratore.
+Il **BUS** è un insieme di linee elettriche che collegano i moduli di un elaboratore.
 Affinché i *moduli* collegati siano in grado di comunicare è necessario che essi interagiscano con il *BUS* tramite regole ben precise.
 L'insieme delle regole viene definito come il ***protocollo del BUS***
 
@@ -129,6 +130,7 @@ L’istruzione **INVOKEVIRTUAL** predisponde l'ambiente per il passaggio al sott
 - Aggiorna i registri
 - Lancia l ‘esecuzione del sottoprogramma
 ----
+
 #### Calcolo dell'indirizzo della prossima istruzione:
 
 Espressione Booleana:
@@ -142,4 +144,4 @@ se JAMZ = 1 -> MPC[PIÙ SIGNIFICATIVO] OR Z
 > NEXT_ADDRESS[8] OR 1
 
 se JAMC = 1 -> MBR OR NEXT_ADDRESS
-> Normalmente, in questa condizione, i bit di NEXT_ADDRESS sono tutti 0 e l'**opcode** dell'istruzione ISA (dopo fetch in MBR) determina la prossima micro-istruzione (**inizio** di un nuovo microprogramma)
+> Normalmente, in questa condizione, i bit di NEXT_ADDRESS sono tutti 0 e l'**opcode** dell'istruzione ISA (dopo fetch in MBR) determina la prossima micro-istruzione (**inizio** di un nuovo microprogramma).
